@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sict</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+        background-color: whitesmoke;
+      }
+      body > .grid {
+        height: 100%;
+      }
+      .column {
+        max-width: 450px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
+        <%= yield %>
+      </div>
+  </body>
+</html>

@@ -10,8 +10,65 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
+
+    <div class="ui container">
+      <div class="ui two column grid">
+        <div class="column"><h1>SICT</h1></div>
+        <div class="right aligned column">
+          <div class="ui breadcrumb crumb-space">
+            <a class="section">Home</a>
+            <div class="divider">/</div>
+            <a class="section">Store</a>
+            <div class="divider">/</div>
+            <div class="active section">T-Shirt</div>
+          </div>
+        </div>
+      </div>
+      <p></p>
+      <div class="ui attached stackable menu">
+        <div class="ui container">
+          <a class="item"> <i class="home icon"></i> Home </a>
+          <a class="item"> <i class="mail icon"></i> Messages </a>
+          <div class="right item">
+            <div class="ui">
+              <div class="ui simple dropdown">
+                <%= current_user.first_name %> <%= current_user.last_name %>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <a class="item"><i class="edit icon"></i> Edit Profile</a>
+                  <a class="item"><i class="power off icon"></i> Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="ui grid">
+        <div class="four wide column">
+          <div class="ui small vertical menu">
+            <a class="active item">
+              Assignment
+            </a>
+            <a class="item">
+              Tasks
+            </a>
+            <a class="item">
+              Submission
+            </a>
+          </div>
+        </div>
+        <!-- sidebar-->
+        <div class="twelve wide column">
+        
+         <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+        
+        </div>
+      </div>
+      <!--main-->
+    </div>
+    <!-- container div-->
   </body>
 </html>
