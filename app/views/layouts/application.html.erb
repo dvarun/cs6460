@@ -4,16 +4,15 @@
     <title>Sict</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-
     <div class="ui container">
       <div class="ui two column grid">
-        <div class="column"><h1>SICT</h1></div>
+        <div class="column">
+          <h1>SICT</h1>
+        </div>
         <div class="right aligned column">
           <div class="ui breadcrumb crumb-space">
             <a class="section">Home</a>
@@ -35,8 +34,8 @@
                 <%= current_user.first_name %> <%= current_user.last_name %>
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                  <a class="item"><i class="edit icon"></i> Edit Profile</a>
-                  <a class="item"><i class="power off icon"></i> Logout</a>
+                  <%= link_to('<i class="edit icon"></i>Edit'.html_safe, edit_user_registration_path, :class => "item") %>
+                  <%= link_to('<i class="power off icon"></i>Logout'.html_safe, destroy_user_session_path, method: :delete, :class => "item") %>
                 </div>
               </div>
             </div>
@@ -60,11 +59,9 @@
         </div>
         <!-- sidebar-->
         <div class="twelve wide column">
-        
-         <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-        
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
         </div>
       </div>
       <!--main-->
