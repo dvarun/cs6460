@@ -1,1 +1,50 @@
-
+<div class="ui one column grid">
+  <div class="column">
+    <button class="fluid ui button violet" id="createGroup">
+      Create Group
+    </button>
+  </div>
+  <div class="column">
+    <div class="ui middle aligned divided list" id="group-grid">
+      <% for g in @groups%>
+        <div class="item">
+          <div class="right floated content">
+            <div class="ui button blue small">Join</div>
+          </div>
+          <div class="content">
+            <%= g.name %>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+<div class="ui small modal">
+  <div class="header">Create a group</div>
+  <div class="content">
+    <%= form_for @group, url: url_for(controller: 'groups', action: 'create'), html: {class: "ui form"} do |f| %>
+      <div class="field">
+        <label for="gname">Group name</label>
+        <div class="field">
+          <%= f.text_field :name, placeholder: "name" %>
+        </div>
+      </div>
+      <div class="ui form">
+        <div class="field">
+          <label>Include Instructor</label>
+          <%= f.select :instructor_allowed, ['True', 'False']%>
+        </div>
+      </div>
+      <%= f.hidden_field :course_id, :value => @course.id %>
+      <%= f.submit%>
+    <% end %>
+  </div>
+  <div class="actions">
+    <div class="ui approve button red">Cancel</div>
+  </div>
+</div>
+<script>
+  $("#createGroup").click(function() {
+    $(".ui.modal").modal("show");
+  });
+</script>

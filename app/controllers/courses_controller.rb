@@ -6,6 +6,8 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @groups = Group.where("course_id=?", @course.id)
+    @group = Group.new
   end
 
   private
