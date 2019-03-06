@@ -1,0 +1,19 @@
+<div class="ui three column grid" id="course-grid">
+  <% for c in @course%>
+    <div class="column">
+      <div class="ui cards">
+        <div class="card">
+          <div class="content">
+            <div class="header"> <%= c.name%></div>
+            <div class="description">
+              <%= c.description%>
+            </div>
+          </div>
+          <div class="ui bottom attached button blue">
+            <%= link_to('Select Course', course_path(c.id), :class => "item") %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>

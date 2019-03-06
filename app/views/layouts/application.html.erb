@@ -14,13 +14,7 @@
           <h1>SICT</h1>
         </div>
         <div class="right aligned column">
-          <div class="ui breadcrumb crumb-space">
-            <a class="section">Home</a>
-            <div class="divider">/</div>
-            <a class="section">Store</a>
-            <div class="divider">/</div>
-            <div class="active section">T-Shirt</div>
-          </div>
+          <%= semantic_breadcrumbs %>
         </div>
       </div>
       <p></p>
@@ -46,9 +40,7 @@
       <div class="ui grid">
         <div class="four wide column">
           <div class="ui small vertical menu">
-            <a class="active item">
-              Assignment
-            </a>
+            <%= link_to('Courses', courses_path, :class => "item") %>
             <a class="item">
               Tasks
             </a>
