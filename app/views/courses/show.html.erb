@@ -36,7 +36,10 @@
         </div>
       </div>
       <%= f.hidden_field :course_id, :value => @course.id %>
-      <%= f.submit%>
+      <br/>
+      <div class="field">
+        <%= f.submit :class => 'ui primary submit button'%>
+      </div>
     <% end %>
   </div>
   <div class="actions">

@@ -14,7 +14,7 @@
           <h1>SICT</h1>
         </div>
         <div class="right aligned column">
-          <%= semantic_breadcrumbs %>
+          Bread crumbs goes here
         </div>
       </div>
       <p></p>
@@ -22,25 +22,30 @@
         <div class="ui container">
           <a class="item"> <i class="home icon"></i> Home </a>
           <a class="item"> <i class="mail icon"></i> Messages </a>
-          <div class="right item">
-            <div class="ui">
-              <div class="ui simple dropdown">
-                <%= current_user.first_name %> <%= current_user.last_name %>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                  <%= link_to('<i class="edit icon"></i>Edit'.html_safe, edit_user_registration_path, :class => "item") %>
-                  <%= link_to('<i class="power off icon"></i>Logout'.html_safe, destroy_user_session_path, method: :delete, :class => "item") %>
+          <%= link_to('<i class="book icon"></i>Course'.html_safe, courses_path, :class => "item") %>
+          <% if user_signed_in? %>
+            <div class="right item">
+              <div class="ui">
+                <div class="ui simple dropdown">
+                  <%= current_user.first_name %> <%= current_user.last_name %>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <%= link_to('<i class="edit icon"></i>Edit'.html_safe, edit_user_registration_path, :class => "item") %>
+                    <%= link_to('<i class="power off icon"></i>Logout'.html_safe, destroy_user_session_path, method: :delete, :class => "item") %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          <%end%>
         </div>
       </div>
       <br />
       <div class="ui grid">
         <div class="four wide column">
           <div class="ui small vertical menu">
-            <%= link_to('Courses', courses_path, :class => "item") %>
+            <a class="item">
+              Dashboard
+            </a>
             <a class="item">
               Tasks
             </a>
