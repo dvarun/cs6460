@@ -15,7 +15,11 @@
         <% for g in @groups%>
           <div class="item">
             <div class="right floated content">
-              <div class="ui button blue small">Join</div>
+              <%= form_for @group_members, url: url_for(controller: 'group_members', action: 'create'), html: {class: "ui form"} do |f| %>
+                <%= f.hidden_field :group_id, :value => g.id %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.submit "Join", :class => 'ui button blue small'%>
+              <%end%>
             </div>
             <div class="content">
               <%= g.name %>

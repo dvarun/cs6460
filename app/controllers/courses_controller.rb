@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
   def show
     @groups = Group.where("course_id=?", @course.id)
     @group = Group.new
+    @group_members = GroupMember.new
   end
 
   private
