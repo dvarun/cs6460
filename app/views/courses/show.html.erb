@@ -1,5 +1,5 @@
 <div class="ui one column grid">
-  <% if  current_user.groups.where("course_id=?", @course.id).present? %>
+  <% if  @user_is_present %>
     <div class="column">
       already in group
     </div>

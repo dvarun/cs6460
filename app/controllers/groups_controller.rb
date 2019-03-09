@@ -1,5 +1,9 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_group, only: [:show]
+
+  def show
+  end
 
   def create
     @group = Group.new(group_params)
@@ -15,5 +19,9 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :course_id, :instructor_allowed)
+  end
+
+  def set_group
+    @group = Group.find(params[:id])
   end
 end

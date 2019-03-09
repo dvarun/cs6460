@@ -20,9 +20,8 @@
       <p></p>
       <div class="ui attached stackable menu">
         <div class="ui container">
-          <a class="item"> <i class="home icon"></i> Home </a>
+          <%= link_to('<i class="home icon"></i>Home'.html_safe, courses_path, :class => "item") %>
           <a class="item"> <i class="mail icon"></i> Messages </a>
-          <%= link_to('<i class="book icon"></i>Course'.html_safe, courses_path, :class => "item") %>
           <% if user_signed_in? %>
             <div class="right item">
               <div class="ui">
@@ -56,8 +55,12 @@
         </div>
         <!-- sidebar-->
         <div class="twelve wide column">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
+          <% if notice.present? %>
+            <div class="ui message"><%= notice %></div>
+          <% end %>
+          <% if alert.present? %>
+            <div class="ui yellow message"><%= alert %></div>
+          <%end%>
           <%= yield %>
         </div>
       </div>
