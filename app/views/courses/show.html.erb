@@ -1,30 +1,33 @@
 <div class="ui one column grid">
-  <div class="column">
-    area for person who already in a group
-  </div>
-  <!-- if not in a group -->
-  <div class="column">
-    <button class="fluid ui button violet" id="createGroup">
-      Create Group
-    </button>
-  </div>
-  <div class="column">
-    <div class="ui middle aligned divided list" id="group-grid">
-      <% for g in @groups%>
-        <div class="item">
-          <div class="right floated content">
-            <div class="ui button blue small">Join</div>
-          </div>
-          <div class="content">
-            <%= g.name %>
-          </div>
-        </div>
-      <%end%>
+  <% if  current_user.groups.where("course_id=?", @course.id).present? %>
+    <div class="column">
+      already in group
     </div>
-  </div>
+  <%else%>
+    <!-- if not in a group -->
+    <div class="column">
+      <button class="fluid ui button violet" id="createGroup">
+        Create Group
+      </button>
+    </div>
+    <div class="column">
+      <div class="ui middle aligned divided list" id="group-grid">
+        <% for g in @groups%>
+          <div class="item">
+            <div class="right floated content">
+              <div class="ui button blue small">Join</div>
+            </div>
+            <div class="content">
+              <%= g.name %>
+            </div>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  <%end%>
   <!-- end if not in group-->
 </div>
-<!-- modal area -->
+<!-- create group modal area -->
 <div class="ui small modal">
   <div class="header">Create a group</div>
   <div class="content">
