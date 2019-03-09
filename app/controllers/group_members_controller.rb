@@ -7,7 +7,7 @@ class GroupMembersController < ApplicationController
       group = Group.find(@group_member.group_id)
       redirect_to group.course, notice: "Joined Group Successfully"
     else
-      render :new, notice: "Group was not created."
+      redirect_to courses_path, notice: "Group was not created. please contact admin"
     end
   end
 

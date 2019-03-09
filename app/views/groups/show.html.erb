@@ -1,0 +1,9 @@
+<div class="ui one column grid">
+  <div class="column">
+    <h4>Members</h4>
+    <% for member in @group_members%>
+      <% user = User.find(member.user_id)%>
+      <%= user.first_name%> <br/>
+    <% end %>
+  </div>
+</div>
