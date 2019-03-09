@@ -1,0 +1,147 @@
+<div class="ui three column grid">
+  <div class="column">
+    <div class="ui cards">
+      <div class="card">
+        <div class="content">
+          <div class="header">
+            Todo <button class="right floated ui mini button blue add-task">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% for task in @todo_task %>
+      <div class="ui cards">
+        <div class="card">
+          <div class="content">
+            <div class="header">
+              <%= task.name %>
+              <span class="right floated"
+                        ><i class="edit icon"></i
+                      ></span>
+            </div>
+            <div class="description">
+              <%= task.name %>
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="right floated">
+              <div class="ui label">
+                Assigned to : 
+                <%# <% user = User.find(task.assigned_id) %>
+                <%# <%= user.first_name%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="column">
+    <div class="ui cards">
+      <div class="card">
+        <div class="content">
+          <div class="header">
+            In Progress <button class="right floated ui mini button blue add-task">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% for task in @in_progress_task %>
+      <div class="ui cards">
+        <div class="card">
+          <div class="content">
+            <div class="header">
+              <%= task.name %>
+              <span class="right floated"
+                        ><i class="edit icon"></i
+                      ></span>
+            </div>
+            <div class="description">
+              <%= task.name %>
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="right floated">
+              <div class="ui label">
+                Assigned to : 
+                <%# <% user = User.find(task.assigned_id) %>
+                <%# <%= user.first_name%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="column">
+    <div class="ui cards">
+      <div class="card">
+        <div class="content">
+          <div class="header">
+            Done <button class="right floated ui mini button blue add-task">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% for task in @done_task %>
+      <div class="ui cards">
+        <div class="card">
+          <div class="content">
+            <div class="header">
+              <%= task.name %>
+              <span class="right floated"
+                        ><i class="edit icon"></i
+                      ></span>
+            </div>
+            <div class="description">
+              <%= task.name %>
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="right floated">
+              <div class="ui label">
+                Assigned to : 
+                <%# <% user = User.find(task.assigned_id) %>
+                <%# <%= user.first_name%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
+<div class="ui small modal">
+  <div class="header">Create a Task</div>
+  <div class="content">
+    <%= form_for Task.new, url: url_for(controller: 'tasks', action: 'create'), html: {class: "ui form"} do |f| %>
+      <div class="field">
+        <label for="tname">Title</label>
+        <%= f.text_field :name, placeholder: "name" %>
+      </div>
+      <div class="field">
+        <label for="Detail">Detail</label>
+        <div class="field">
+          <%= f.text_area :detail %>
+        </div>
+      </div>
+      <div class="field">
+        <label for="state">State</label>
+        <%= f.collection_select :state_id, State.all, :id, :name%>
+      </div>
+      <div class="field">
+        <%= f.submit :class => 'ui primary submit button'%>
+      </div>
+      <%= f.hidden_field :group_id, :value => @group.id %>
+      <%= f.hidden_field :creator_id, :value => current_user.id %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <div class="ui approve button red">Cancel</div>
+  </div>
+</div>
+<script>
+  $(".add-task").click(function() {
+    $(".ui.modal").modal("show");
+  });
+</script>
