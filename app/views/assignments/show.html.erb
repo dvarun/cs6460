@@ -1,1 +1,11 @@
-<iframe src="<%= rails_blob_path(@assignment.document) %>" width="700" height="700" style="border: none;"> </iframe>
+<div class="ui one column grid">
+  <div class="column">
+    <h4><%=@assignment.title%></h4>
+  </div>
+  <div class="column">
+    <iframe src="<%= rails_blob_path(@assignment.document) %>" width="700" height="700" style="border: none;"> </iframe>
+  </div>
+  <div class="column">
+    Discussion goes here
+  </div>
+</div>
