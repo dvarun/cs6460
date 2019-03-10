@@ -24,12 +24,13 @@
             </div>
           </div>
           <div class="extra content">
+            <div class="ui label">
+              Assigned to : 
+              <% user = User.find(task.assigned_id) %>
+              <%= user.first_name%>
+            </div>
             <div class="right floated">
-              <div class="ui label">
-                Assigned to : 
-                <% user = User.find(task.assigned_id) %>
-                <%= user.first_name%>
-              </div>
+              <%= link_to('<i class="trash icon"></i>'.html_safe,task_path(task.id), method: :delete, data:{confirm: "Are you sure to delete this Task?"},:class => "item") %>
             </div>
           </div>
         </div>
@@ -61,12 +62,13 @@
             </div>
           </div>
           <div class="extra content">
+            <div class="ui label">
+              Assigned to : 
+              <% user = User.find(task.assigned_id) %>
+              <%= user.first_name%>
+            </div>
             <div class="right floated">
-              <div class="ui label">
-                Assigned to : 
-                <% user = User.find(task.assigned_id) %>
-                <%= user.first_name%>
-              </div>
+              <%= link_to('<i class="trash icon"></i>'.html_safe,task_path(task.id), method: :delete, data:{confirm: "Are you sure to delete this Task?"},:class => "item") %>
             </div>
           </div>
         </div>
@@ -98,12 +100,13 @@
             </div>
           </div>
           <div class="extra content">
+            <div class="ui label">
+              Assigned to : 
+              <% user = User.find(task.assigned_id) %>
+              <%= user.first_name%>
+            </div>
             <div class="right floated">
-              <div class="ui label">
-                Assigned to : 
-                <% user = User.find(task.assigned_id) %>
-                <%= user.first_name%>
-              </div>
+              <%= link_to('<i class="trash icon"></i>'.html_safe,task_path(task.id), method: :delete, data:{confirm: "Are you sure to delete this Task?"},:class => "item") %>
             </div>
           </div>
         </div>

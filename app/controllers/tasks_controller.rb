@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_group, only: [:show]
+  before_action :set_group, only: [:show, :edit]
 
   def create
     @task = Task.new(task_params)
@@ -10,15 +10,30 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def show
-    @todo_task = Task.where("group_id = ? and state_id = ?", @group.id, 1)
-    @in_progress_task = Task.where("group_id = ? and state_id = ?", @group.id, 2)
-    @done_task = Task.where("group_id = ? and state_id = ?", @group.id, 3)
-    users = [] #declare empty array to store existing user
-    for user in @group.group_members
-      users << user.user_id
+    if @group.group_members.where("user_id = ?", current_user.id).blank?
+      redirect_to @group.course, notice: "Please join or create a group"
+    else
+      @todo_task = Task.where("group_id = ? and state_id = ?", @group.id, 1)
+      @in_progress_task = Task.where("group_id = ? and state_id = ?", @group.id, 2)
+      @done_task = Task.where("group_id = ? and state_id = ?", @group.id, 3)
+      users = [] #declare empty array to store existing user
+      for user in @group.group_members
+        users << user.user_id
+      end
+      @list_of_user = User.where("id in (?)", users)
     end
-    @list_of_user = User.where("id in (?)", users)
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    respond_to do |format|
+      format.html { redirect_to task_path(@task.group_id), notice: "Task was successfully destroyed." }
+    end
   end
 
   private
