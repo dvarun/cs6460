@@ -1,0 +1,14 @@
+<%= form_with model: @assignment, html: {class: "ui form"}, local: true  do |form| %>
+  <div class="field">
+    Title: <%= form.text_field :title %><br>
+  </div>
+  Detail: <%= form.text_area :detail %><br>
+  <div class="field">
+    Document: <%= form.file_field :document %><br>
+  </div>
+  <div class="field">
+    <label for="assigned">Course</label>
+    <%= form.collection_select :course_id, Course.all, :id, :name %>
+  </div>
+  <%= form.submit %>
+<% end %>
