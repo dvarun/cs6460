@@ -14,6 +14,11 @@ class TasksController < ApplicationController
     @todo_task = Task.where("group_id = ? and state_id = ?", @group.id, 1)
     @in_progress_task = Task.where("group_id = ? and state_id = ?", @group.id, 2)
     @done_task = Task.where("group_id = ? and state_id = ?", @group.id, 3)
+    users = [] #declare empty array to store existing user
+    for user in @group.group_members
+      users << user.user_id
+    end
+    @list_of_user = User.where("id in (?)", users)
   end
 
   private
@@ -23,6 +28,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :detail, :creator_id, :state_id, :group_id)
+    params.require(:task).permit(:name, :detail, :creator_id, :state_id, :group_id, :assigned_id)
   end
 end
