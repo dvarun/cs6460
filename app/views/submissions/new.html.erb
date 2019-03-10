@@ -1,0 +1,12 @@
+<%= form_with model: @submission, html: {class: "ui form"}, local: true  do |form| %>
+  <%= form.hidden_field :course_id, :value => 1 %>
+  <%= form.hidden_field :group_id, :value => 12%>
+  <%= form.hidden_field :user_id, :value => current_user.id%>
+  <div class="field">
+    Detail: <%= form.text_area :detail %>
+  </div>
+  <div class="field">
+    File: <%= form.file_field :project %>
+  </div>
+  <%= form.submit %>
+<% end %>
