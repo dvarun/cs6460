@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_group, only: [:show, :edit]
+  before_action :set_group, only: [:show]
 
   def create
     @task = Task.new(task_params)
@@ -11,6 +11,26 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
+    @group = Group.find(@task.group_id)
+    if @group.group_members.where("user_id = ?", current_user.id).blank?
+      redirect_to @group.course, notice: "Please join or create a group"
+    else
+      users = [] #declare empty array to store existing user
+      for user in @group.group_members
+        users << user.user_id
+      end
+      @list_of_user = User.where("id in (?)", users)
+    end
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to task_path(@task.group_id), notice: "Task was successfully updated."
+    else
+      redirect_to courses_path, notice: "Task was not updated. please contact admin"
+    end
   end
 
   def show
