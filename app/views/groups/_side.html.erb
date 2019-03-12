@@ -1,10 +1,11 @@
 <div class="four wide column">
   <div class="ui small vertical menu">
     <%= link_to "Dashboard", group_path(@group.id), :class => "item"%>
-    <a class="item">
-      Assignment
-    </a>
+    <%= link_to "Assignment", discussion_path(@group.id), :class => "item"%>
     <%= link_to "Task", task_path(@group.id), :class => "item"%>
+    <a class="item">
+      Feedback
+    </a>
     <a class="item">
       Submit Assignment
     </a>
