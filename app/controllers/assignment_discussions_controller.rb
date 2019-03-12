@@ -5,6 +5,8 @@ class AssignmentDiscussionsController < ApplicationController
   def show
     if @group.group_members.where("user_id = ?", current_user.id).present?
       @assignment = @group.course.assignment
+      @discussion = Discussion.new
+      @comments = Discussion.where("user_id = ? and group_id = ?", current_user.id, @group.id)
       if @assignment.blank?
         redirect_to @group.course, notice: "No assignment available yet"
       end

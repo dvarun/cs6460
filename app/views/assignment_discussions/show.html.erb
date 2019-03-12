@@ -6,5 +6,44 @@
     <iframe src="<%= rails_blob_path(@assignment.document) %>" width="700" height="700" style="border: none;"> </iframe>
   </div>
   <div class="column">
+    <%= form_with(model: @discussion,html: {class: "ui form"} ,local: true)  do |form| %>
+      <% if @discussion.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(discussion.errors.count, "error") %> prohibited this discussion from being saved:</h2>
+          <ul>
+            <% discussion.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= form.hidden_field :user_id, :value => current_user.id %>
+      <%= form.hidden_field :group_id, :value => @group.id %>
+      <div class="field">
+        <%= form.label :comment %>
+        <%= form.text_field :comment %>
+      </div>
+      <div class="actions">
+        <%= form.submit "Submit" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="column">
+    <div class="ui comments">
+      <%for comment in @comments%>
+        <div class="comment">
+          <div class="content">
+            <%= comment.user.first_name + ' ' + comment.user.last_name %>
+            <div class="metadata">
+              <span class="date"><%= comment.updated_at.strftime('%m/%d/%Y %I:%M%p')%></span>
+              <span class="right floated">
+                <%= link_to '<i class="trash alternate outline icon"></i>'.html_safe, comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </span>
+            </div>
+          </div>
+          <div class="text"><%= comment.comment %></div>
+        </div>
+      <%end%>
+    </div>
   </div>
 </div>
