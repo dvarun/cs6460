@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :feedbacks
   resources :discussions
   resources :submissions
   resources :assignments

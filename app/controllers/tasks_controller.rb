@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_group, only: [:show]
+  before_action :authenticate_user!
 
   def create
     @task = Task.new(task_params)
@@ -40,6 +41,9 @@ class TasksController < ApplicationController
       @todo_task = Task.where("group_id = ? and state_id = ?", @group.id, 1)
       @in_progress_task = Task.where("group_id = ? and state_id = ?", @group.id, 2)
       @done_task = Task.where("group_id = ? and state_id = ?", @group.id, 3)
+      @total_task = Task.where("group_id = ?", @group.id)
+
+      @progress_percent = (1 - ((@in_progress_task.count.to_f + @todo_task.count.to_f) / @total_task.count.to_f)) * 100
       users = [] #declare empty array to store existing user
       for user in @group.group_members
         users << user.user_id
