@@ -2,6 +2,27 @@ class FeedbacksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: [:show]
 
+  def create
+    @feedback = Feedback.new(feedback_params)
+
+    respond_to do |format|
+      if @feedback.save
+        format.html { redirect_to feedback_path(@feedback.task.id), notice: "feedback was successfully added." }
+      else
+        format.html { render :new }
+        format.json { render json: @feedback.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @feedback = Feedback.find(params[:id])
+    @feedback.destroy
+    respond_to do |format|
+      format.html { redirect_to feedback_path(@feedback.task.id), notice: "Feedback was successfully destroyed." }
+    end
+  end
+
   def index
     if params[:group_id].present?
       group_id = params[:group_id]
@@ -20,7 +41,7 @@ class FeedbacksController < ApplicationController
     @group = @task.group
     if @task.group.group_members.where("user_id = ?", current_user.id).present?
       @feedback = Feedback.new
-      @feedbacks = Feedback.where("group_id = ?", @task.group.id)
+      @feedbacks = Feedback.where("task_id = ?", @task.id)
     else
       redirect_to @task.group, notice: "Content not available"
     end
@@ -30,5 +51,9 @@ class FeedbacksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def feedback_params
+    params.require(:feedback).permit(:user_id, :task_id, :detail)
   end
 end
