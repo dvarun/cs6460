@@ -3,14 +3,7 @@
     <%= link_to "Dashboard", group_path(@group.id), :class => "item"%>
     <%= link_to "Assignment", assignment_discussion_path(@group.id), :class => "item"%>
     <%= link_to "Task", task_path(@group.id), :class => "item"%>
-    <a class="item">
-      Feedback
-    </a>
-    <a class="item">
-      Submit Assignment
-    </a>
-    <a class="item">
-      Leave Group
-    </a>
+    <%= link_to "Feedback", feedbacks_path(:group_id => @group.id), :class => "item" %>
+    <%= link_to "Submit Assignment", new_submission_path(:group_id => @group.id), :class => "item" %>
   </div>
 </div>

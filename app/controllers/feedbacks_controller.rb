@@ -24,15 +24,19 @@ class FeedbacksController < ApplicationController
   end
 
   def index
-    if params[:group_id].present?
-      group_id = params[:group_id]
-      @group = Group.find(group_id)
-      if @group.present?
-        @completed_task = @group.tasks.where("state_id = 3")
+    begin
+      if params[:group_id].present?
+        group_id = params[:group_id]
+        @group = Group.find(group_id)
+        if @group.present? && @group.group_members.where("user_id = ?", current_user.id).present?
+          @completed_task = @group.tasks.where("state_id = 3")
+        else
+          redirect_to courses_path, notice: "Please join or create a group"
+        end
       else
         redirect_to courses_path, notice: "Please join or create a group"
       end
-    else
+    rescue ActiveRecord::RecordNotFound => e
       redirect_to courses_path, notice: "Please join or create a group"
     end
   end

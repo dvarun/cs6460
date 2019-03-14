@@ -11,7 +11,7 @@ class AssignmentDiscussionsController < ApplicationController
         redirect_to @group.course, notice: "No assignment available yet"
       end
     else
-      redirect_to @group.course, notice: "Content not available"
+      redirect_to courses_path, notice: "Content not available"
     end
   end
 

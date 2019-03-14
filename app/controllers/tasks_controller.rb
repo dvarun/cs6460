@@ -43,7 +43,11 @@ class TasksController < ApplicationController
       @done_task = Task.where("group_id = ? and state_id = ?", @group.id, 3)
       @total_task = Task.where("group_id = ?", @group.id)
 
-      @progress_percent = (1 - ((@in_progress_task.count.to_f + @todo_task.count.to_f) / @total_task.count.to_f)) * 100
+      if @total_task.blank?
+        @progress_percent = 0
+      else
+        @progress_percent = (1 - ((@in_progress_task.count.to_f + @todo_task.count.to_f) / @total_task.count.to_f)) * 100
+      end
       users = [] #declare empty array to store existing user
       for user in @group.group_members
         users << user.user_id
