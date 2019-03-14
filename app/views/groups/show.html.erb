@@ -1,10 +1,32 @@
 <div class="ui one column grid">
   <div class="column">
-    <%= @group.name %>
-    <hr/>
+    Group Name: <b><%= @group.name %></b>
+  </div>
+  <div class="column">
+    <b> Group Members</b>
     <% for member in @group_members%>
       <% user = User.find(member.user_id)%>
       <%= user.first_name%> <br/>
     <% end %>
+  </div>
+</div>
+<div class="ui three column grid">
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Tasks</h4>
+      <p>Total: <%= @group.tasks.count%></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Members</h4>
+      <p>Total: <%= @group_members.count%></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Discussion</h4>
+      <p>Total: <%= @group.discussions.count%></p>
+    </div>
   </div>
 </div>

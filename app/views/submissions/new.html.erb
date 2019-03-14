@@ -3,17 +3,22 @@
     Submission for Group <b><%= @group.id.to_s + ' : ' + @group.name%></b>
   </div>
   <div class="column">
-    <%= form_with model: @submission, html: {class: "ui form"}, local: true  do |form| %>
-      <%= form.hidden_field :course_id, :value => @group.course.id %>
-      <%= form.hidden_field :group_id, :value => @group.id%>
-      <%= form.hidden_field :user_id, :value => current_user.id%>
-      <div class="field">
-        Detail: <%= form.text_area :detail %>
-      </div>
-      <div class="field">
-        File: <%= form.file_field :project %>
-      </div>
-      <%= form.submit %>
-    <% end %>
+    <% if @sub_check.blank?%>
+      <%= form_with model: @submission, html: {class: "ui form"}, local: true  do |form| %>
+        <%= form.hidden_field :course_id, :value => @group.course.id %>
+        <%= form.hidden_field :group_id, :value => @group.id%>
+        <%= form.hidden_field :user_id, :value => current_user.id%>
+        <div class="field">
+          Detail: <%= form.text_area :detail %>
+        </div>
+        <div class="field">
+          File: <%= form.file_field :project %>
+        </div>
+        <%= form.submit %>
+      <% end %>
+    <%else%>
+      This group has already submitted the assignment <br/>
+      <%= link_to "Download your file", rails_blob_path(@sub_check.project, disposition: "attachment") %>
+    <%end%>
   </div>
 </div>

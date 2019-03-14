@@ -8,6 +8,7 @@ class SubmissionsController < ApplicationController
         @group = Group.find(group_id)
         if @group.group_members.where("user_id = ?", current_user.id).present?
           @submission = Submission.new
+          @sub_check = Submission.find_by_group_id(@group.id)
         else
           redirect_to courses_path, notice: "Please join or create a group"
         end

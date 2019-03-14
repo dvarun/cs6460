@@ -17,7 +17,7 @@
             <tr>
               <td data-label="Name"><%= task.name %></td>
               <td data-label="Detail"><%= task.detail %></td>
-              <td data-label="action"><%= link_to "Feedback", feedback_path(task.id), :class => "item"%></td>
+              <td data-label="action"><%= link_to "Provide Feedback", feedback_path(task.id), :class => "item"%></td>
             </tr>
           <%end%>
         </tbody>
