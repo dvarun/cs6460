@@ -2,13 +2,6 @@
   <div class="column">
     Group Name: <b><%= @group.name %></b>
   </div>
-  <div class="column">
-    <b> Group Members</b>
-    <% for member in @group_members%>
-      <% user = User.find(member.user_id)%>
-      <%= user.first_name%> <br/>
-    <% end %>
-  </div>
 </div>
 <div class="ui three column grid">
   <div class="column">
@@ -27,6 +20,22 @@
     <div class="ui piled segment">
       <h4 class="ui header">Discussion</h4>
       <p>Total: <%= @group.discussions.count%></p>
+    </div>
+  </div>
+</div>
+<div class="ui one column grid">
+  <div class="column">
+    <b> Group Members</b> <br/>
+    <div class="ui middle aligned selection list">
+      <% for member in @group_members%>
+        <div class="item">
+          <% user = User.find(member.user_id)%>
+          <img class="ui avatar image" src="https://ui-avatars.com/api/?name=<%= user.first_name + ' ' + user.last_name%>&background=192a56&color=FFFFFF">
+          <div class="content">
+            <div class="header"> <%= user.first_name + ' ' + user.last_name%> </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
