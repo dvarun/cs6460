@@ -9,8 +9,7 @@ class FeedbacksController < ApplicationController
       if @feedback.save
         format.html { redirect_to feedback_path(@feedback.task.id), notice: "feedback was successfully added." }
       else
-        format.html { render :new }
-        format.json { render json: @feedback.errors, status: :unprocessable_entity }
+        format.html { redirect_to feedback_path(@feedback.task.id), alert: "feedback was not added. please add some details" }
       end
     end
   end

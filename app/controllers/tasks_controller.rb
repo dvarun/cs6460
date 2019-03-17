@@ -7,7 +7,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to task_path(@task.group_id), notice: "Task was successfully created."
     else
-      redirect_to courses_path, notice: "Task was not created. please contact admin"
+      redirect_to courses_path, alert: "Task was not created. please add details"
     end
   end
 
