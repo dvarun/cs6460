@@ -6,4 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-states = State.create([{name: "Todo"}, {name: "In Progress"}, {name: "Done"}])
+course = Course.create([{name: "CS6310", description: "Software Architecture and Design"},
+                        {name: "CS6460", description: "Ed Tech"},
+                        {name: "CS007", description: "Bond Skill"}])
