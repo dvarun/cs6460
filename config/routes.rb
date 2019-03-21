@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "students/index"
+  get "students/list_group"
   resources :feedbacks
   resources :discussions
   resources :submissions

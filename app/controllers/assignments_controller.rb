@@ -2,7 +2,11 @@ class AssignmentsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @assignment = Assignment.new
+    if current_user.is_instructor
+      @assignment = Assignment.new
+    else
+      redirect_to courses_path, notice: "Page not available"
+    end
   end
 
   def create
