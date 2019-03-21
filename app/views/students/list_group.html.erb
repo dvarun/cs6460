@@ -4,13 +4,15 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Edit</th>
+          <th> Total Member </th>
+          <th>Detail</th>
         </tr>
       </thead>
       <tbody>
         <% for group in @groups%>
           <tr>
             <td data-label="fname"><%= group.name %></td>
+            <td data-label="members"><%= group.group_members.count %></td>
             <td data-label="action"><%#= link_to "Provide Feedback", feedback_path(task.id), :class => "item"%> Detail</td>
           </tr>
         <%end%>
