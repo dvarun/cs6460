@@ -1,0 +1,43 @@
+<div class="ui one column grid">
+  <div class="column">
+    <h4>Add Course</h4>
+    <hr/>
+  </div>
+  <div class="column">
+    <%= form_with(model: @course,html: {class: "ui form"} ,local: true)  do |form| %>
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+      </div>
+      <div class="actions">
+        <%= form.submit "Submit" %>
+      </div>
+    <%end%>
+  </div>
+  <div class="column">
+    <h4>Delete Course</h4>
+    <hr/>
+  </div>
+  <div class="column">
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for course in @courses%>
+          <tr>
+            <td data-label="fname"><%= course.name %></td>
+            <td data-label="action">  <%= link_to '<i class="trash alternate outline icon"></i>'.html_safe, course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
