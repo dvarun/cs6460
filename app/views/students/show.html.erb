@@ -1,0 +1,31 @@
+<div class="ui one column grid">
+  <div class="column">
+    Student Name: <b><%= @student.first_name + ' ' + @student.last_name %></b>
+  </div>
+</div>
+<div class="ui two column grid">
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Discussion</h4>
+      <p>Total: <%= @student.discussions.count%></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Feedbacks</h4>
+      <p>Total: <%= @student.feedbacks.count%></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Discussion</h4>
+      <p>Total: <%= @student.discussions.count%></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Total Task</h4>
+      <p>Total: <%= @task.count%></p>
+    </div>
+  </div>
+</div>

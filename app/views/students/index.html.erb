@@ -5,7 +5,7 @@
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Edit</th>
+          <th>View</th>
         </tr>
       </thead>
       <tbody>
@@ -13,7 +13,7 @@
           <tr>
             <td data-label="fname"><%= user.first_name %></td>
             <td data-label="lname"><%= user.last_name %></td>
-            <td data-label="action"><%#= link_to "Provide Feedback", feedback_path(task.id), :class => "item"%> Edit</td>
+            <td data-label="view"><%= link_to "View", student_path(user), :class => "item"%></td>
           </tr>
         <%end%>
       </tbody>
