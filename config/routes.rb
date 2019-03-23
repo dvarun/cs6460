@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :courses
   devise_for :users
   resources :group_members
+  resources :conversations do
+    resources :messages
+  end
 
   get "/assignment_discussions/:id", to: "assignment_discussions#show", as: "assignment_discussion"
   get "/students_group/list_group", to: "students#list_groups", as: "list_groups"

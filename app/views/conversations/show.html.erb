@@ -1,0 +1,24 @@
+<div class="ui one column grid">
+  <div class="column">
+    Subject: <%=@conversation.subject%>
+    <hr/>
+  </div>
+  <div class="column">
+    <% @conversation.receipts_for(current_user).each do |receipt|%>
+      <div>
+        <%= receipt.message.sender.name %>
+        <%= receipt.message.body %>
+      </div>
+    <% end %>
+  </div>
+  <div class="column">
+    <%= form_tag conversation_messages_path(@conversation), :class => 'ui form', method: :post do %>
+      <div class="field">
+        <%= text_area_tag :body %>
+      </div>
+      <div class="field">
+        <%= submit_tag("Reply", :class=>"ui primary submit button", :name=>"submit")%>
+      </div>
+    <% end %>
+  </div>
+</div>

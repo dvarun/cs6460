@@ -33,6 +33,7 @@ gem 'jquery-rails'
 gem 'commontator'
 gem "chartkick"
 gem "groupdate"
+gem 'mailboxer'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

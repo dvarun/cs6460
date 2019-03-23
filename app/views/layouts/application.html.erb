@@ -18,7 +18,7 @@
       <div class="ui attached stackable menu">
         <div class="ui container">
           <%= link_to('<i class="home icon"></i>Home'.html_safe, courses_path, :class => "item") %>
-          <a class="item"> <i class="mail icon"></i> Messages </a>
+          <%= link_to('<i class="mail icon"></i>Messages'.html_safe, conversations_path, :class => "item") %>
           <% if user_signed_in? %>
             <div class="right item">
               <div class="ui">

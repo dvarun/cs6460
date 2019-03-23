@@ -1,0 +1,22 @@
+<div class="ui one column grid">
+  <div class="column">
+    New Conversation
+    <hr/>
+  </div>
+  <div class="column">
+    <%= form_tag conversations_path,:class => 'ui form' ,method: :post do %>
+      <div class="field">
+        <%= select_tag :user_id, options_from_collection_for_select(@recipients, :id, :name) %>
+      </div>
+      <div class="field">
+        <%= text_field_tag :subject %>
+      </div>
+      <div class="field">
+        <%= text_area_tag :body %>
+      </div>
+      <div class="field">
+        <%= submit_tag("Send", :class=>"ui primary submit button", :name=>"submit")  %>
+      </div>
+    <% end %>
+  </div>
+</div>

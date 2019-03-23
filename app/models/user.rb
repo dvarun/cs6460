@@ -6,4 +6,13 @@ class User < ApplicationRecord
   has_many :groups, through: :group_members
   has_many :discussions
   has_many :feedbacks
+  acts_as_messageable
+
+  def name
+    "#{self.first_name + " " + self.last_name}"
+  end
+
+  def mailboxer_email(object)
+    nil
+  end
 end

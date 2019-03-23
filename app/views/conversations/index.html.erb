@@ -1,0 +1,13 @@
+<div class="ui one column grid">
+  <div class="column">
+    Conversations
+    <hr/>
+  </div>
+  <div class="column">
+    <% @conversations.each do |conversation|%>
+      <div>
+        <%= link_to conversation.subject, conversation_path(conversation)%>
+      </div>
+    <%end%>
+  </div>
+</div>
