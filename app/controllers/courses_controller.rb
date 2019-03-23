@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  layout "course"
+  layout "course", except: [:new, :edit]
 
   def index
     @course = Course.all
@@ -22,6 +22,19 @@ class CoursesController < ApplicationController
       redirect_to courses_path, notice: "Course added successfully"
     else
       redirect_to courses_path, notice: "Course could not be added"
+    end
+  end
+
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    if @course.update(course_params)
+      redirect_to courses_path, notice: "Course editted successfully"
+    else
+      redirect_to courses_path, notice: "Course could not be updated"
     end
   end
 

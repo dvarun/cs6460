@@ -1,0 +1,17 @@
+<div class="ui one column grid">
+  <div class="column">
+    <%= form_with(model: @course,html: {class: "ui form"} ,local: true)  do |form| %>
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+      </div>
+      <div class="actions">
+        <%= form.submit "Submit" %>
+      </div>
+    <%end%>
+  </div>
+</div>

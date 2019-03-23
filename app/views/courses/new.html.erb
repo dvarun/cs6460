@@ -25,19 +25,20 @@
   <div class="column">
     <table class="ui celled table">
       <thead>
+        <th>Name</th>
+        <th> Edit </th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for course in @courses%>
         <tr>
-          <th>Name</th>
-          <th>Delete</th>
+          <td data-label="fname"><%= course.name %></td>
+          <td data-label="action">  <%= link_to '<i class="pencil alternate icon"></i>'.html_safe, edit_course_path(course.id) %></td>
+          <td data-label="action">  <%= link_to '<i class="trash alternate outline icon"></i>'.html_safe, course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-      </thead>
-      <tbody>
-        <% for course in @courses%>
-          <tr>
-            <td data-label="fname"><%= course.name %></td>
-            <td data-label="action">  <%= link_to '<i class="trash alternate outline icon"></i>'.html_safe, course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <%end%>
-      </tbody>
-    </table>
-  </div>
+      <%end%>
+    </tbody>
+  </table>
+</div>
 </div>
