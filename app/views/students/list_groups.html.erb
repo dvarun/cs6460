@@ -1,10 +1,15 @@
 <div class="ui one column grid">
   <div class="column">
+    Group List
+    <hr/>
+  </div>
+  <div class="column">
     <table class="ui celled table">
       <thead>
         <tr>
           <th>Name</th>
-          <th> Total Member </th>
+          <th>Total Member</th>
+          <th>Progress</th>
           <th>Detail</th>
         </tr>
       </thead>
@@ -13,10 +18,17 @@
           <tr>
             <td data-label="fname"><%= group.name %></td>
             <td data-label="members"><%= group.group_members.count %></td>
+            <td data-label="progress"><%= group.progress %>%</td>
             <td data-label="action"><%#= link_to "Provide Feedback", feedback_path(task.id), :class => "item"%> Detail</td>
           </tr>
         <%end%>
       </tbody>
     </table>
+  </div>
+  <div class="column">
+    Courses Group
+    <hr/>
+  </div>
+  <div class="column">
   </div>
 </div>

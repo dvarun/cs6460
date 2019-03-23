@@ -31,7 +31,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'semantic-ui-sass'
 gem 'jquery-rails'
 gem 'commontator'
-
+gem "chartkick"
+gem "groupdate"
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -1,5 +1,9 @@
 <div class="ui one column grid">
   <div class="column">
+    Student List
+    <hr/>
+  </div>
+  <div class="column">
     <table class="ui celled table">
       <thead>
         <tr>
@@ -18,5 +22,12 @@
         <%end%>
       </tbody>
     </table>
+  </div>
+  <div class="column">
+    Sign Up Dates
+    <hr/>
+  </div>
+  <div class="column">
+    <%= line_chart User.group_by_day(:created_at).count %>
   </div>
 </div>
