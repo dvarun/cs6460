@@ -9,10 +9,10 @@
         <%= select_tag :user_id, options_from_collection_for_select(@recipients, :id, :name) %>
       </div>
       <div class="field">
-        <%= text_field_tag :subject %>
+        <%= text_field_tag :subject, nil, :placeholder => "Subject" %>
       </div>
       <div class="field">
-        <%= text_area_tag :body %>
+        <%= text_area_tag :body, nil, rows: 4, :placeholder => "Message detail"  %>
       </div>
       <div class="field">
         <%= submit_tag("Send", :class=>"ui primary submit button", :name=>"submit")  %>

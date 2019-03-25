@@ -4,10 +4,21 @@
     <hr/>
   </div>
   <div class="column">
-    <% @conversations.each do |conversation|%>
-      <div>
-        <%= link_to conversation.subject, conversation_path(conversation)%>
-      </div>
-    <%end%>
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Date time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @conversations.each do |conversation|%>
+          <tr>
+            <td data-label="subject"><%= link_to conversation.subject, conversation_path(conversation), :class => "header"%></td>
+            <td data-label="created"><%= conversation.created_at.strftime('%m/%d/%Y %I:%M%p') %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
   </div>
 </div>

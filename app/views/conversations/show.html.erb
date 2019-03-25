@@ -1,20 +1,29 @@
 <div class="ui one column grid">
   <div class="column">
-    Subject: <%=@conversation.subject%>
-    <hr/>
-  </div>
-  <div class="column">
-    <% @conversation.receipts_for(current_user).each do |receipt|%>
-      <div>
-        <%= receipt.message.sender.name %>
-        <%= receipt.message.body %>
-      </div>
-    <% end %>
+    <div class="ui comments">
+      <h3 class="ui dividing header"><%=@conversation.subject%></h3>
+      <% @conversation.receipts_for(current_user).each do |receipt|%>
+        <div class="comment">
+          <a class="avatar">
+            <img src="https://ui-avatars.com/api/?name=<%= receipt.message.sender.fname + ' ' + receipt.message.sender.lname%>&background=192a56&color=FFFFFF"">
+          </a>
+          <div class="content">
+            <a class="author"> <%= receipt.message.sender.name %></a>
+            <div class="metadata">
+              <span class="date"> <%= receipt.message.created_at.strftime('%m/%d/%Y %I:%M%p') %></span>
+            </div>
+            <div class="text">
+              <%= receipt.message.body %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="column">
     <%= form_tag conversation_messages_path(@conversation), :class => 'ui form', method: :post do %>
       <div class="field">
-        <%= text_area_tag :body %>
+        <%= text_area_tag :body, nil, rows: 2,:placeholder => "Message detail"  %>
       </div>
       <div class="field">
         <%= submit_tag("Reply", :class=>"ui primary submit button", :name=>"submit")%>

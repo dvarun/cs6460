@@ -12,6 +12,14 @@ class User < ApplicationRecord
     "#{self.first_name + " " + self.last_name}"
   end
 
+  def fname
+    "#{self.first_name}"
+  end
+
+  def lname
+    "#{self.last_name}"
+  end
+
   def mailboxer_email(object)
     nil
   end
