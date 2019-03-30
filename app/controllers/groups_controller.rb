@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      ahoy.track "Create group", {group: @group}
+      ahoy.track "Created a group", {group: @group}
       GroupMember.create(user_id: current_user.id, group_id: @group.id)
       redirect_to @group.course, notice: "Group was successfully created."
     else
