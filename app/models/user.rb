@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :groups, through: :group_members
   has_many :discussions
   has_many :feedbacks
+  has_many :visits, class_name: "Ahoy::Visit"
   acts_as_messageable
 
   def name
