@@ -29,6 +29,7 @@ class DiscussionsController < ApplicationController
 
     respond_to do |format|
       if @discussion.save
+        ahoy.track "Had discussion on the assignment", discussion: @discussion
         format.html { redirect_to assignment_discussion_path(@discussion.group.id), notice: "Comment was successfully added." }
       else
         format.html { render :new }
@@ -55,6 +56,7 @@ class DiscussionsController < ApplicationController
   # DELETE /discussions/1.json
   def destroy
     @discussion.destroy
+    ahoy.track "Deleted the discussion item", discussion: @discussion
     respond_to do |format|
       format.html { redirect_to assignment_discussion_path(@discussion.group.id), notice: "Discussion was successfully destroyed." }
       format.json { head :no_content }

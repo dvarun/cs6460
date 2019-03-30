@@ -4,9 +4,9 @@ class FeedbacksController < ApplicationController
 
   def create
     @feedback = Feedback.new(feedback_params)
-
     respond_to do |format|
       if @feedback.save
+        ahoy.track "Gave feedback", {feedback: @feedback}
         format.html { redirect_to feedback_path(@feedback.task.id), notice: "feedback was successfully added." }
       else
         format.html { redirect_to feedback_path(@feedback.task.id), alert: "feedback was not added. please add some details" }
@@ -17,6 +17,7 @@ class FeedbacksController < ApplicationController
   def destroy
     @feedback = Feedback.find(params[:id])
     @feedback.destroy
+    ahoy.track "Deleted feedback", {feedback: @feedback}
     respond_to do |format|
       format.html { redirect_to feedback_path(@feedback.task.id), notice: "Feedback was successfully destroyed." }
     end
@@ -29,6 +30,7 @@ class FeedbacksController < ApplicationController
         @group = Group.find(group_id)
         if @group.present? && @group.group_members.where("user_id = ?", current_user.id).present?
           @completed_task = @group.tasks.where("state_id = 3")
+          ahoy.track "Visited feedback items page"
         else
           redirect_to courses_path, notice: "Please join or create a group"
         end
@@ -45,6 +47,7 @@ class FeedbacksController < ApplicationController
     if @task.group.group_members.where("user_id = ?", current_user.id).present?
       @feedback = Feedback.new
       @feedbacks = Feedback.where("task_id = ?", @task.id)
+      ahoy.track "Visited a feedback page", item: @task
     else
       redirect_to @task.group, notice: "Content not available"
     end

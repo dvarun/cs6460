@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
 
   def index
     @course = Course.all
+    ahoy.track "Visited courses page"
   end
 
   def new
@@ -45,6 +46,7 @@ class CoursesController < ApplicationController
 
   def show
     group = current_user.groups.where("course_id=?", @course.id).present?
+    ahoy.track "Visited a course group page"
     if group
       group_id = current_user.groups.find_by_course_id(@course.id)
       redirect_to group_id

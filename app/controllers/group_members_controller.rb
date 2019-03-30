@@ -5,6 +5,7 @@ class GroupMembersController < ApplicationController
     @group_member = GroupMember.new(group_member_params)
     if @group_member.save
       group = Group.find(@group_member.group_id)
+      ahoy.track "Joined group", {group: group}
       redirect_to group.course, notice: "Joined Group Successfully"
     else
       redirect_to courses_path, notice: "Group was not created. please contact admin"

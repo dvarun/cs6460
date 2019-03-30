@@ -5,6 +5,7 @@ class AssignmentDiscussionsController < ApplicationController
   def show
     if @group.group_members.where("user_id = ?", current_user.id).present?
       @assignment = @group.course.assignment
+      ahoy.track "Visited the assignment discussion page", assignment: @assignment
       @discussion = Discussion.new
       @comments = Discussion.where("group_id = ?", @group.id)
       if @assignment.blank?

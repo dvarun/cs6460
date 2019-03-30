@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
+      ahoy.track "Created Task", {task: @task}
       redirect_to task_path(@task.group_id), notice: "Task was successfully created."
     else
       redirect_to courses_path, alert: "Task was not created. please add details"
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
+      ahoy.track "Updated Task", {task: @task}
       redirect_to task_path(@task.group_id), notice: "Task was successfully updated."
     else
       redirect_to courses_path, notice: "Task was not updated. please contact admin"
@@ -42,6 +44,7 @@ class TasksController < ApplicationController
       @in_progress_task = Task.where("group_id = ? and state_id = ?", @group.id, 2)
       @done_task = Task.where("group_id = ? and state_id = ?", @group.id, 3)
       @total_task = Task.where("group_id = ?", @group.id)
+      ahoy.track "Viewed tasks"
 
       if @total_task.blank?
         @progress_percent = 0
@@ -59,6 +62,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
+    ahoy.track("Deleted task", {task: @task})
     respond_to do |format|
       format.html { redirect_to task_path(@task.group_id), notice: "Task was successfully destroyed." }
     end

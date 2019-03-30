@@ -23,6 +23,7 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.create! params.require(:submission).permit(:course_id, :group_id, :detail, :user_id)
     @submission.project.attach(params[:submission][:project])
+    ahoy.track "Assignment submission", {submission: @submission}
     redirect_to @submission
   end
 
