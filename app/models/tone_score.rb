@@ -1,0 +1,2 @@
+class ToneScore < ApplicationRecord
+end
