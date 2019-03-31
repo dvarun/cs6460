@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise'
 gem 'pg'
 gem 'ahoy_matey'
+gem 'ibm_watson'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
