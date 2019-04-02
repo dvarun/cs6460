@@ -5,6 +5,7 @@ class StudentsController < ApplicationController
   def index
     if current_user.is_instructor
       @users = User.where("is_instructor = false")
+      @chart = Ahoy::Event.where(:user_id => @users.ids).group(:name).count
     else
       redirect_to courses_path, notice: "Page not available"
     end
@@ -21,6 +22,8 @@ class StudentsController < ApplicationController
   def show
     if current_user.is_instructor
       @task = Task.where("assigned_id = ?", @student.id)
+      @activity = Ahoy::Event.where("user_id = ?", @student.id).count
+      @chart = Ahoy::Event.where("user_id = ?", @student.id).group(:name).count
     else
       redirect_to courses_path, notice: "Page not available"
     end

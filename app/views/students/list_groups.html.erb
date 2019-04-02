@@ -7,7 +7,8 @@
     <table class="ui celled table">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Course Name</th>
+          <th>Group Name</th>
           <th>Total Member</th>
           <th>Progress</th>
           <th>Detail</th>
@@ -16,6 +17,7 @@
       <tbody>
         <% for group in @groups%>
           <tr>
+            <td data-label="fname"><%= group.course.name %></td>
             <td data-label="fname"><%= group.name %></td>
             <td data-label="members"><%= group.group_members.count %></td>
             <td data-label="progress"><%= group.progress %>%</td>
