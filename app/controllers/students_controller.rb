@@ -14,6 +14,7 @@ class StudentsController < ApplicationController
   def list_groups
     if current_user.is_instructor
       @groups = Group.where("instructor_allowed = true")
+      @group_chart = Course.joins(:groups).group("groups.name").where("instructor_allowed = true").count
     else
       redirect_to courses_path, notice: "Page not available"
     end

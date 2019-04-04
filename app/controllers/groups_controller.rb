@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show]
 
   def show
-    if @group.group_members.where("user_id = ?", current_user.id).present?
+    if @group.group_members.where("user_id = ?", current_user.id).present? || current_user.is_instructor?
       ahoy.track "Visit group", {group: @group}
       @group_members = @group.group_members
     else

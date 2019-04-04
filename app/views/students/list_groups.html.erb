@@ -11,6 +11,7 @@
           <th>Group Name</th>
           <th>Total Member</th>
           <th>Progress</th>
+          <th>View</th>
           <th>Detail</th>
         </tr>
       </thead>
@@ -21,16 +22,18 @@
             <td data-label="fname"><%= group.name %></td>
             <td data-label="members"><%= group.group_members.count %></td>
             <td data-label="progress"><%= group.progress %>%</td>
-            <td data-label="action"><%#= link_to "Provide Feedback", feedback_path(task.id), :class => "item"%> Detail</td>
+            <td data-label="action"><%= link_to "View Group", group_path(group.id), :class => "item"%></td>
+            <td data-label="action"><%#= link_to "Provide Feedback", feedback_path(task.id), :class => "item"%> Group Insight</td>
           </tr>
         <%end%>
       </tbody>
     </table>
   </div>
   <div class="column">
-    Courses Group
+    Groups in each course
     <hr/>
   </div>
   <div class="column">
+    <%= column_chart @group_chart %>
   </div>
 </div>

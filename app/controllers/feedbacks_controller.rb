@@ -28,7 +28,7 @@ class FeedbacksController < ApplicationController
       if params[:group_id].present?
         group_id = params[:group_id]
         @group = Group.find(group_id)
-        if @group.present? && @group.group_members.where("user_id = ?", current_user.id).present?
+        if @group.present? && @group.group_members.where("user_id = ?", current_user.id).present? || current_user.is_instructor?
           @completed_task = @group.tasks.where("state_id = 3")
           ahoy.track "Visited feedback items page"
         else
@@ -44,7 +44,7 @@ class FeedbacksController < ApplicationController
 
   def show
     @group = @task.group
-    if @task.group.group_members.where("user_id = ?", current_user.id).present?
+    if @task.group.group_members.where("user_id = ?", current_user.id).present? || current_user.is_instructor?
       @feedback = Feedback.new
       @feedbacks = Feedback.where("task_id = ?", @task.id)
       ahoy.track "Visited a feedback page", item: @task

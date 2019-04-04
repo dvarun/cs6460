@@ -13,11 +13,20 @@
         <div class="column">
           <h1>SICT</h1>
         </div>
+        <% if current_user.is_instructor? %>
+          <div class="right aligned column" style="padding-top: 30px;">
+            <%= link_to('<i class="graduation cap icon"></i>Back to instructor'.html_safe, students_path, :class => "item") %>
+          </div>
+        <% end %>
       </div>
       <p></p>
       <div class="ui attached stackable menu">
         <div class="ui container">
-          <%= link_to('<i class="home icon"></i>Home'.html_safe, courses_path, :class => "item") %>
+          <% if current_user.is_instructor? %>
+            <%= link_to('<i class="home icon"></i>Home'.html_safe, students_path, :class => "item") %>
+          <% else %>
+            <%= link_to('<i class="home icon"></i>Home'.html_safe, courses_path, :class => "item") %>
+          <% end %>
           <%= link_to('<i class="mail icon"></i>Messages'.html_safe, conversations_path, :class => "item") %>
           <% if user_signed_in? %>
             <div class="right item">
