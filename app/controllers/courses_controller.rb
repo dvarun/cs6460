@@ -4,8 +4,12 @@ class CoursesController < ApplicationController
   layout "course", except: [:new, :edit]
 
   def index
-    @course = Course.all
-    ahoy.track "Visited courses page"
+    if current_user.is_instructor?
+      redirect_to students_path, notice: "Welcome #{current_user.name}"
+    else
+      @course = Course.all
+      ahoy.track "Visited courses page"
+    end
   end
 
   def new
@@ -20,9 +24,9 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     if @course.save
-      redirect_to courses_path, notice: "Course added successfully"
+      redirect_to new_course_path, notice: "Course added successfully"
     else
-      redirect_to courses_path, notice: "Course could not be added"
+      redirect_to new_course_path, notice: "Course could not be added"
     end
   end
 
@@ -33,9 +37,9 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     if @course.update(course_params)
-      redirect_to courses_path, notice: "Course editted successfully"
+      redirect_to new_course_path, notice: "Course editted successfully"
     else
-      redirect_to courses_path, notice: "Course could not be updated"
+      redirect_to new_course_path, notice: "Course could not be updated"
     end
   end
 
