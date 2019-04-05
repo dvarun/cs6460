@@ -14,9 +14,17 @@ class StudentsController < ApplicationController
   def list_groups
     if current_user.is_instructor
       @groups = Group.where("instructor_allowed = true")
-      @group_chart = Course.joins(:groups).group("groups.name").where("instructor_allowed = true").count
+      @group_chart = Course.joins(:groups).group(:name).where("instructor_allowed = true").count
     else
       redirect_to courses_path, notice: "Page not available"
+    end
+  end
+
+  def group_insight
+    if current_user.is_instructor
+      @group = Group.find(params[:id])
+    else
+      redirect_to students_path, notice: "Page not available"
     end
   end
 
@@ -24,7 +32,8 @@ class StudentsController < ApplicationController
     if current_user.is_instructor
       @task = Task.where("assigned_id = ?", @student.id)
       @activity = Ahoy::Event.where("user_id = ?", @student.id).count
-      @chart = Ahoy::Event.where("user_id = ?", @student.id).group(:name).count
+      @event_chart = Ahoy::Event.where("user_id = ?", @student.id).group(:name).count
+      @tone_chart = @student.tones.joins(:tone_scores).group(:name).count
     else
       redirect_to courses_path, notice: "Page not available"
     end

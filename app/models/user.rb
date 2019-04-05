@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :discussions
   has_many :feedbacks
   has_many :visits, class_name: "Ahoy::Visit"
+  has_many :tones
   acts_as_messageable
 
   def name
