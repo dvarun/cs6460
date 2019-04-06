@@ -37,7 +37,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    if @group.group_members.where("user_id = ?", current_user.id).blank?
+    if @group.group_members.where("user_id = ?", current_user.id).blank? && current_user.is_instructor == false
       redirect_to @group.course, notice: "Please join or create a group"
     else
       @todo_task = Task.where("group_id = ? and state_id = ?", @group.id, 1)
