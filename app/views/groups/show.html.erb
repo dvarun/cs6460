@@ -25,6 +25,13 @@
 </div>
 <div class="ui one column grid">
   <div class="column">
+    <b> Tasks State</b> <br/>
+    <div>
+      <p></p>
+      <%= column_chart @state_chart %>
+    </div>
+  </div>
+  <div class="column">
     <b> Group Members</b> <br/>
     <div class="ui middle aligned selection list">
       <% for member in @group_members%>

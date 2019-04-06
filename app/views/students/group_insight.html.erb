@@ -1,1 +1,23 @@
-
+<div class="ui one column grid">
+  <div class="column">
+    <strong><%= @group.name %></strong> - Task States
+    <hr/>
+  </div>
+  <div class="column">
+    <%= column_chart @state_chart %>
+  </div>
+  <div class="column">
+    Group Members activity
+    <hr/>
+  </div>
+  <div class="column">
+    <%= bar_chart @member_activity, colors: ["#00b894", "#666"] %>
+  </div>
+  <div class="column">
+    Group sentiment
+    <hr/>
+  </div>
+  <div class="column">
+    <%= pie_chart @sentiment%>
+  </div>
+</div>

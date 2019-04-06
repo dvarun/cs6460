@@ -23,6 +23,13 @@ class StudentsController < ApplicationController
   def group_insight
     if current_user.is_instructor
       @group = Group.find(params[:id])
+      @state_chart = State.all.joins(:tasks).group(:name).where("tasks.group_id = ?", @group.id).count
+      users = [] #declare empty array to store existing user
+      for user in @group.group_members
+        users << user.user_id
+      end
+      @member_activity = Ahoy::Event.where("user_id in (?)", users).group(:name).count
+      @sentiment = Tone.where("user_id in (?)", users).joins(:tone_scores).group(:name).count
     else
       redirect_to students_path, notice: "Page not available"
     end
