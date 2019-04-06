@@ -30,6 +30,7 @@ class StudentsController < ApplicationController
       end
       @member_activity = Ahoy::Event.where("user_id in (?)", users).group(:name).count
       @sentiment = Tone.where("user_id in (?)", users).joins(:tone_scores).group(:name).count
+      @list_of_users = User.where("id in (?)", users)
     else
       redirect_to students_path, notice: "Page not available"
     end

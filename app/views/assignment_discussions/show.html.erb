@@ -33,7 +33,11 @@
       <%for comment in @comments%>
         <div class="comment">
           <div class="content">
-            <%= comment.user.first_name + ' ' + comment.user.last_name %>
+            <% if comment.user.is_instructor? %>
+              <%= comment.user.first_name + ' ' + comment.user.last_name + ' (Instructor)' %>
+            <%else%>
+              <%= comment.user.first_name + ' ' + comment.user.last_name %>
+            <%end%>
             <div class="metadata">
               <span class="date"><%= comment.updated_at.strftime('%m/%d/%Y %I:%M%p')%></span>
               <span class="right floated">

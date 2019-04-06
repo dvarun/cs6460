@@ -21,3 +21,10 @@
     <%= pie_chart @sentiment%>
   </div>
 </div>
+<div class="ui two column grid">
+  <% for user in @list_of_users%>
+    <div class="column">
+      <%= pie_chart user.tones.joins(:tone_scores).group(:name).count%>
+    </div>
+  <%end %>
+</div>
