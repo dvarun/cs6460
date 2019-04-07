@@ -1,0 +1,41 @@
+<div class="ui one column grid">
+  <div class="column">
+    Dashboard
+    <hr/>
+  </div>
+</div>
+<div class="ui two column grid">
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Tasks</h4>
+      <p>Total: <%= Task.count %></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Students</h4>
+      <p>Total: <%= User.where("is_instructor = false").count %></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Groups</h4>
+      <p>Total: <%= Group.count%></p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="ui piled segment">
+      <h4 class="ui header">Courses</h4>
+      <p>Total: <%= Course.count%></p>
+    </div>
+  </div>
+</div>
+<div class="ui one column grid">
+  <div class="column">
+    Activities by students
+    <hr/>
+  </div>
+  <div class="column">
+    <%= bar_chart @activity_chart, colors: ["#00b894", "#666"] %>
+  </div>
+</div>

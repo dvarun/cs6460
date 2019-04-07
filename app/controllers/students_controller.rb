@@ -20,6 +20,11 @@ class StudentsController < ApplicationController
     end
   end
 
+  def dashboard
+    @users = User.where("is_instructor = false")
+    @activity_chart = Ahoy::Event.where(:user_id => @users.ids).group(:name).count
+  end
+
   def group_insight
     if current_user.is_instructor
       @group = Group.find(params[:id])
