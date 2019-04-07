@@ -51,6 +51,7 @@ class StudentsController < ApplicationController
       @activity = Ahoy::Event.where("user_id = ?", @student.id).count
       @event_chart = Ahoy::Event.where("user_id = ?", @student.id).group(:name).count
       @tone_chart = @student.tones.joins(:tone_scores).group(:name).count
+      @completed_task = Task.where("assigned_id = ? and state_id = 3", @student.id)
     else
       redirect_to courses_path, notice: "Page not available"
     end

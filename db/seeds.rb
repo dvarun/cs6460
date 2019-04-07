@@ -21,14 +21,19 @@ User.create!([
   {email: "joe@mail.com", password: "demo123", first_name: "Joe", last_name: "Russo", is_instructor: false},
   {email: "trevor@mail.com", password: "demo123", first_name: "Trevor", last_name: "Allan", is_instructor: false},
   {email: "simon@mail.com", password: "demo123", first_name: "Simon", last_name: "Carr", is_instructor: false},
+  {email: "thanos@mail.com", password: "demo123", first_name: "Thanos", last_name: "Titan", is_instructor: false},
   {email: "emily@mail.com", password: "demo123", first_name: "Emily", last_name: "Watson", is_instructor: true},
   {email: "frank@mail.com", password: "demo123", first_name: "Frank", last_name: "Arnold", is_instructor: true},
 ])
+
+puts "user and instructor created"
 
 Course.create([{name: "CS6310", description: "Principles and concepts involved in the design and analysis of large software systems."},
                {name: "CS6460", description: "Introduction to educational technology, with an emphasis on theoretical foundations."},
                {name: "CS1372", description: "Design, analysis and implementation of programs for engineering problem-solving using ANSI Standard C, with an introduction to C++."},
                {name: "CS6330", description: "Introduction to methods and principles for programming, testing, and managing the evolution of software systems."}])
+
+puts "courses created"
 
 Group.create([{course_id: 1, name: "Design analysis principles study", instructor_allowed: true},
               {course_id: 1, name: "OOP Software Development", instructor_allowed: true},
@@ -41,10 +46,12 @@ Group.create([{course_id: 1, name: "Design analysis principles study", instructo
               {course_id: 4, name: "Principles of programming project", instructor_allowed: true},
               {course_id: 4, name: "Principles of programming research", instructor_allowed: false}])
 
+puts "groups created"
+
 State.create!([
   {id: 1, name: "Todo"},
   {id: 2, name: "In Progress"},
   {id: 3, name: "Done"},
 ])
-
+puts "states created"
 puts "seed done"

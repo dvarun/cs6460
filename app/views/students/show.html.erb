@@ -44,4 +44,32 @@
   <div class="column">
     <%= pie_chart @tone_chart %>
   </div>
+  <div class="column">
+    <%= @student.name + ' completed tasks'%>
+    <hr/>
+  </div>
+  <div class="column">
+    <%if @completed_task.blank? %>
+      No completed task
+    <% else %>
+      <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Detail</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for task in @completed_task%>
+            <tr>
+              <td data-label="Name"><%= task.name %></td>
+              <td data-label="Detail"><%= task.detail %></td>
+              <td data-label="action"><%= link_to "view/give feedback", feedback_path(task.id), :class => "item"%></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
 </div>
