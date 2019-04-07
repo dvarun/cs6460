@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
 
   def index
     if current_user.is_instructor?
-      redirect_to students_path, notice: "Welcome #{current_user.name}"
+      redirect_to instructor_dashboard_path, notice: "Welcome #{current_user.name}"
     else
       @course = Course.all
       ahoy.track "Visited courses page"

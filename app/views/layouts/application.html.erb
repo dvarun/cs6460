@@ -23,7 +23,7 @@
       <div class="ui attached stackable menu">
         <div class="ui container">
           <% if current_user.is_instructor? %>
-            <%= link_to('<i class="home icon"></i>Home'.html_safe, students_path, :class => "item") %>
+            <%= link_to('<i class="home icon"></i>Home'.html_safe, instructor_dashboard_path, :class => "item") %>
           <% else %>
             <%= link_to('<i class="home icon"></i>Home'.html_safe, courses_path, :class => "item") %>
           <% end %>
