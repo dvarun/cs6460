@@ -57,6 +57,10 @@ class StudentsController < ApplicationController
     end
   end
 
+  def submission
+    @submissions = Submission.all
+  end
+
   private
 
   def set_student

@@ -1,0 +1,26 @@
+<div class="ui one column grid">
+  <div class="column">
+    Group submissions
+    <hr/>
+  </div>
+  <div class="column">
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>Course name</th>
+          <th>Group name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for submission in @submissions %>
+          <tr>
+            <td data-label="Name"><%= submission.course.name %></td>
+            <td data-label="Detail"><%= submission.group.name %></td>
+            <td data-label="action"> <%= link_to "Download file", rails_blob_path(submission.project, disposition: "attachment") %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
