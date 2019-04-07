@@ -38,4 +38,11 @@
   <div class="column">
     <%= bar_chart @activity_chart, colors: ["#00b894", "#666"] %>
   </div>
+  <div class="column">
+    Student sentiments
+    <hr/>
+  </div>
+  <div class="column">
+    <%= pie_chart ToneScore.group(:name).count %>
+  </div>
 </div>

@@ -21,8 +21,12 @@ class StudentsController < ApplicationController
   end
 
   def dashboard
-    @users = User.where("is_instructor = false")
-    @activity_chart = Ahoy::Event.where(:user_id => @users.ids).group(:name).count
+    if current_user.is_instructor?
+      @users = User.where("is_instructor = false")
+      @activity_chart = Ahoy::Event.where(:user_id => @users.ids).group(:name).count
+    else
+      redirect_to courses_path, notice: "Page not available"
+    end
   end
 
   def group_insight

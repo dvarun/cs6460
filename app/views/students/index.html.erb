@@ -30,18 +30,4 @@
   <div class="column">
     <%= line_chart User.group_by_day(:created_at).count %>
   </div>
-  <div class="column">
-    Overall Activities
-    <hr/>
-  </div>
-  <div class="column">
-    <%= bar_chart @chart, colors: ["#00b894", "#666"] %>
-  </div>
-  <div class="column">
-    Sentiment Score
-    <hr/>
-  </div>
-  <div class="column">
-    <%= pie_chart ToneScore.group(:name).count %>
-  </div>
 </div>

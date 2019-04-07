@@ -15,7 +15,7 @@
         </div>
         <% if current_user.is_instructor? %>
           <div class="right aligned column" style="padding-top: 30px;">
-            <%= link_to('<i class="graduation cap icon"></i>Back to instructor'.html_safe, students_path, :class => "item") %>
+            <%= link_to('<i class="graduation cap icon"></i>Back to instructor'.html_safe, instructor_dashboard_path, :class => "item") %>
           </div>
         <% end %>
       </div>

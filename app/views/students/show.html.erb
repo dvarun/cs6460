@@ -31,7 +31,15 @@
 </div>
 <div class="ui one column grid">
   <div class="column">
+    <%= @student.name + ' Activities'%>
+    <hr/>
+  </div>
+  <div class="column">
     <%= bar_chart @event_chart %>
+  </div>
+  <div class="column">
+    <%= @student.name + ' Overall Sentiment'%>
+    <hr/>
   </div>
   <div class="column">
     <%= pie_chart @tone_chart %>
