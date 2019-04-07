@@ -30,7 +30,7 @@
 <div class="ui two column grid">
   <% for user in @list_of_users%>
     <div class="column">
-      <p> <%= user.name + ' - Sentiment'%></p>
+      <p> <%= user.name + ' - Sentiment'%> <%= link_to '<i class="icon user outline"></i>'.html_safe, student_path(user), :class => "item" %></p>
       <%= pie_chart user.tones.joins(:tone_scores).group(:name).count%>
     </div>
   <%end %>
